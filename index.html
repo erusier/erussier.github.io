@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  .icon-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 0;
+    opacity: 50%;
+  }
+  .icon-bar .header {
+    color:#fff;
+    text-align: left;
+    font-size: 18px;
+    margin-left: 20px;
+  }
+  .icon-container {
+    display: flex;
+    margin-left: auto;
+  }
+  .icon-container a {
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s;
+  }
+  .icon-container a.active {
+    background-color: #4CAF50;
+  }
+  .icon-container a:hover {
+    background-color: #575757;
+  }
+  section {
+    padding: 0;
+    margin-top: 60px;
+    background-color: #f9f9f9;
+  }
+  #home {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #home img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 20px;
+  }
+  #search h1 {
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    height: calc(100vh - 180px); /* Adjusting for padding and title */
+    background-color: #f9f9f9;
+  }
+  .grid-item {
+    border: 2px solid #fff;
+    background-color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<!-- Fixed Navigation Bar -->
+<div class="icon-bar">
+  <div class="header">My Icon Portfolio</div>
+  <div class="icon-container">
+    <a class="active" href="#home"><i class="fa fa-home"></i></a> 
+    <a href="#search"><i class="fa fa-search"></i></a> 
+    <a href="#globe"><i class="fa fa-globe"></i></a>
+    <a href="#trash"><i class="fa fa-trash"></i></a> 
+  </div>
+</div>
+
+<!-- Page Sections -->
+<section id="home">
+  <img src="football.jpg" alt="Welcome to My Portfolio">
+</section>
+<section id="search">
+  <h1>My 3D Projects</h1>
+  <div class="grid-container">
+    <div class="grid-item">
+      <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
+      <spline-viewer url="https://prod.spline.design/qFfo0C7wvm7NzevY/scene.splinecode"></spline-viewer>
+    </div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+  </div>
+</section>
+<section id="globe"></section>
+<section id="trash"></section>
+
+<!-- Script for Active Class Toggle -->
+<script>
+  // Get all anchor tags inside the icon container
+  const icons = document.querySelectorAll('.icon-container a');
+
+  // Add click event listeners to update the active class
+  icons.forEach(icon => 
+    icon.addEventListener('click', (event) => {
+      // Prevent default anchor behavior
+      event.preventDefault();
+
+      // Scroll to the target section
+      document.querySelector(icon.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+
+      // Remove the active class from all icons
+      icons.forEach(i => i.classList.remove('active'));
+
+      // Add the active class to the clicked icon
+      icon.classList.add('active');
+    })
+  );
+</script>
+
+</body>
+</html>
